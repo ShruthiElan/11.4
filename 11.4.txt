@@ -1,0 +1,13 @@
+
+CREATE TABLE IF NOT EXISTS real_estate(street string,city string,zip bigint,state string,beds int,baths int, sq_ft int,type string,sale_date string,price bigint,latitude float,longitude float)                         
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+
+LOAD DATA LOCAL INPATH '/home/acadgild/Downloads/real_estate.csv' OVERWRITE INTO TABLE real_estate;
+
+1)SELECT city,COUNT(type) FROM real_estate WHERE type=="Condo" AND price>=10000  GROUP BY city;
+2)SELECT street,city,price FROM real_estate WHERE state=="CA" AND type=="Condo" ORDER BY price LIMIT 1;
+3)SELECT * FROM real_estate WHERE price>=60000 AND price<=120000 AND sq_ft>1450 AND beds>=3 AND baths>=2 ORDER BY
+ price LIMIT 5; 
+4)SELECT city,baths,sq_ft,price,type,beds FROM real_estate WHERE beds>2 AND type="Residential";
